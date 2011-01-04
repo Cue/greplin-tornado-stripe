@@ -34,7 +34,7 @@ class Client(object):
   Usage (within a RequestHandler):
 
     def post(self):
-      devpay = util.devpayments.Client(self.settings['devpayments_secret'])
+      devpay = devpayments.Client(self.settings['devpayments_secret'])
       sample_card = {
         'number': '4242424242424242',
         'exp_month': 10,
