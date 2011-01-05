@@ -54,8 +54,9 @@ class Client(object):
   API_URL = "https://api.devpayments.com/v1"
 
 
-  def __init__(self, key):
+  def __init__(self, key, raise_errors=True):
     self._key = key
+    self._raise_errors = raise_errors
 
 
   def retrieve(self, callback, **params):
@@ -200,7 +201,8 @@ class Client(object):
         'invalid_request_error': InvalidRequestException,
         'api_error': APIException
       }
-      raise err[res['error']['type']](res['error']['message'])
+      if self._raise_errors:
+        raise err[res['error']['type']](res['error']['message'])
     callback(Response(res), method)
 
 
