@@ -195,14 +195,13 @@ class Client(object):
   def _parse_response(self, callback, method, response):
     """Parse a response from the API"""
     res = escape.json_decode(response.body)
-    if res.get('error'):
+    if self._raise_errors and  res.get('error'):
       err = {
         'card_error': CardException,
         'invalid_request_error': InvalidRequestException,
         'api_error': APIException
       }
-      if self._raise_errors:
-        raise err[res['error']['type']](res['error']['message'])
+      raise err[res['error']['type']](res['error']['message'])
     callback(Response(res), method)
 
 
@@ -216,11 +215,17 @@ class Response(object):
 
 
   def __getattr__(self, name):
+    if isinstance(self._dict[name], dict):
+      return Response(self._dict[name])
     return self._dict[name]
 
 
-  def __dict__(self):
-    return self._dict
+  def get(self, name, fallback=None):
+    """Mimic dict.get"""
+    try:
+      return self._dict[name]
+    except KeyError:
+      return fallback
 
 
 
