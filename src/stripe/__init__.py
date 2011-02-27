@@ -142,7 +142,7 @@ class Client(object):
 
   def delete_customer(self, callback, **params):
     """
-    Delete the given customer. They will not be charged again, even if their is an outstanding balance on their account.
+    Delete the given customer. They will not be charged again, even if there is an outstanding balance on their account.
     """
     self._require(params, ['id'])
     return self._call(callback, 'delete_customer', params)
