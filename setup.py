@@ -21,7 +21,7 @@ try:
 except ImportError:
   from distutils.core import setup
 
-setup(name='greplin-tornado-ses',
+setup(name='greplin-tornado-stripe',
       version='0.1',
       description='A client for the Stripe API',
       license='Apache',
