@@ -40,7 +40,7 @@ class Client(object):
         'exp_month': 10,
         'exp_year': 2011
       }
-      devpay.execute(self.async_callback(self._on_executed),
+      devpay.execute(self._on_executed,
                      amount=2000, currency='usd', card=sample_card,
                      mnemonic='customer@gmail.com')
 
