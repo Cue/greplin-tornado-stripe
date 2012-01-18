@@ -51,7 +51,7 @@ class Client(object):
       self.finish()
 
   """
-  API_URL = "https://api.devpayments.com/v1"
+  API_URL = "https://api.stripe.com/v1"
 
 
   def __init__(self, key, raise_errors=True):
