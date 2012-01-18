@@ -22,7 +22,7 @@ except ImportError:
   from distutils.core import setup
 
 setup(name='greplin-tornado-stripe',
-      version='0.1',
+      version='0.2',
       description='A client for the Stripe API',
       license='Apache',
       author='Greplin, Inc.',

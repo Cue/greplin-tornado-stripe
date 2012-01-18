@@ -183,7 +183,7 @@ class Client(object):
     params = {
       'method':method,
       'key':self._key,
-      'client':{'type':'binding', 'language':'python_tornado', 'version':'1.4.3'}
+      'client':{'type':'binding', 'language':'python_tornado', 'version':'0.2'}
     }
     if extra_params:
       params.update(extra_params)
@@ -194,7 +194,11 @@ class Client(object):
 
   def _parse_response(self, callback, method, response):
     """Parse a response from the API"""
-    res = escape.json_decode(response.body)
+    try:
+      res = escape.json_decode(response.body)
+    except Exception, e:
+      e.args += ('API response was: %s' % response,)
+      raise
     if self._raise_errors and  res.get('error'):
       err = {
         'card_error': CardException,
