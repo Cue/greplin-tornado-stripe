@@ -27,7 +27,7 @@ setup(name='greplin-tornado-stripe',
       license='Apache',
       author='Greplin, Inc.',
       author_email='opensource@greplin.com',
-      url='http://www.github.com/Greplin/greplin-tornado-stripe',
+      url='https://www.github.com/Cue/greplin-tornado-stripe',
       package_dir = {'':'src'},
       packages = [
         'greplin',
